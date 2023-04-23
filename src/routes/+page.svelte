@@ -10,39 +10,94 @@
   function selectCategory(categoryId: number | null) {
     currentCategory.set(categoryId);
   }
+  function getVariantColor(categoryId: number) {
+        const categoryColor: { [key: number]: string } = {
+          1: 'text-surface-600-300-token',
+          2: 'text-primary-600-300-token',
+          3: 'text-secondary-600-300-token',
+          4: 'text-tertiary-600-300-token',
+          5: 'text-success-600-300-token',
+        };
+    
+        return categoryColor[categoryId] || 'text-surface-600-300-token';
+      }
 
 </script>
-<div class="gap-2 m-4 ">
-  <h1>
-Liste Des Biais cognitifs</h1>
 
+  <div class="page-container">
+  <section class="gap-2 m-4 flex-auto ">
+  
+  <div class="card border-8 border-surface-900-50-token p-10 mx-auto space-y-4 rounded-none max-w-4xl"> 
+<h1 class="p-2 font-bold">Liste Des Biais cognitifs</h1>
 
-<hr class="m-4"/>
-<p class="p-4">
+<p class="p-4 lg:!text-2xl">
   Les biais cognitifs représentent des processus de pensée qui conduisent l'esprit humain à aboutir à des conclusions inexactes.
-   Présentée ici, une liste de 52 biais répartis en 5 catégories. 
-  Le but de ces différentes cartes sont d'aider les équipes de conception à reconnaître leurs propres biais et les différentes inclinaisons qu'ils peuvent produire,
-   volontairement ou non, chez les utilisateurs et utilisatrices.
   </p>
+  <p class="p-4 lg:!text-xl"> Présentée ici, une liste de 52 biais répartis en 5 catégories. 
+    Le but de ces différentes cartes sont d'aider les équipes de conception à reconnaître leurs propres biais et les différentes inclinaisons qu'ils peuvent produire,
+     volontairement ou non, chez les utilisateurs et utilisatrices.
+    </p>
 </div>
-<div class="gap-2 m-4">
+</section>
+
+<section class="gap-2 m-4  grid  justify-center">
   <!-- Add a button to show all categories -->
   <button class="btn variant-filled-primary" on:click={() => selectCategory(null)}>Show All</button>
+  <div class="grid grid-cols-3 ">
   {#each categories as category }
-  <button class="badge variant-filled" on:click={() => selectCategory(category.id)}>{category.label}</button>
+  <button class="btn btn-sm variant-filled m-2" on:click={() => selectCategory(category.id)}>{category.label}</button>
   {/each}
 </div>
+</section>
+
 
 {#each categories as category }
 <div class="p-4 m-4">  
-<h2>{category.label}</h2>
+  {#if $currentCategory === null || $currentCategory === category.id}
+<h2 class="{getVariantColor(category.id)}">{category.label}</h2>
   <p>{category.description}</p>
-</div> 
+  {/if}
+</div>
+<div class="grid  lg: grid-cols-3 md:grid-cols-2 sm:grid-cols-1"> 
 {#each category.biais as biais }
+
 {#if $currentCategory === null || $currentCategory === category.id}
 
     <BiaisCard name={biais.name} categoryId={category.id} id={biais.id} description={biais.description}/>
  {/if}
+
     {/each}
- 
+  </div>  
 {/each}
+</div>
+
+
+<style>
+  .page-container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2.5rem 1rem;
+  }
+
+  @media (min-width: 768px){
+    .page-container{
+      padding: 5rem 2.5rem;
+      max-width: 768px;
+    }
+  }
+  @media (min-width: 1280px) {
+    .page-container {
+      max-width: 1280px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .page-container {
+      max-width: 1024px;
+    }
+  }
+
+  
+
+
+</style>

@@ -29,7 +29,7 @@ function drawerOpen(): void {
 <AppShell slotSidebarLeft="bg-surface-500/5 {classesSidebar}" slotPageContent="p-4">
 
 	<svelte:fragment slot="header">
-    <AppBar >
+    <AppBar shadow="shadow-lg">
     <svelte:fragment slot="lead">
     <div class="flex items-center">
         <button class="md:hidden btn btn-sm mr-4" on:click={drawerOpen}>
