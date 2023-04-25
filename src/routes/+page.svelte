@@ -1,25 +1,14 @@
 <script lang="ts">
   import BiaisCard from "$lib/BiaisCard.svelte";
-import { writable } from "svelte/store";
   export let data;
 
-  let categories = data.body;
+  const categoriesList = data.body;
 
-  const categoriesFilter = (categoryId?: number) => {
-    if (categoryId !== undefined) {
-      if (Array.isArray(categories)) {
-        return categories.filter((category) => category.id === categoryId);
-      } else {
-        return [];
-      }
-    } else {
-      return data.body;
-    }
-  };
+   let idToFilter: number | null = null;
 
-  const setCategoryId = (categoryId: number | undefined) => {
-    categories = categoriesFilter(categoryId);
-  };
+
+$: filteredCategories = idToFilter ? categoriesList.filter((category) => category.id === idToFilter) : categoriesList
+
 
   function getVariantColor(categoryId: number) {
     const categoryColor: { [key: number]: string } = {
@@ -33,7 +22,7 @@ import { writable } from "svelte/store";
     return categoryColor[categoryId] || "text-surface-600-300-token";
   }
 
- $: console.log(categories)
+ $: console.log(filteredCategories)
 </script>
 
 <div class="page-container">
@@ -61,19 +50,19 @@ import { writable } from "svelte/store";
     <!-- Add a button to show all categories -->
     <button
       class="btn variant-filled-primary"
-      on:click={() => setCategoryId(undefined)}>Show All</button
+      on:click={() => idToFilter = null}>Show All</button
     >
     <div class="grid grid-cols-3">
-      {#each categories as  category}
+      {#each categoriesList as  category}
         <button
           class="btn btn-sm variant-filled m-2"
-          on:click={() => setCategoryId(category.id)}>{category.label}</button
+          on:click={() => idToFilter = category.id}>{category.label}</button
         >
       {/each}
     </div>
   </section>
 
-  {#each categories as category}
+  {#each filteredCategories as category (category.id)}
     <div class="p-4 m-4">
       <h2 class={getVariantColor(category.id)}>{category.label}</h2>
       <p>{category.description}</p>
