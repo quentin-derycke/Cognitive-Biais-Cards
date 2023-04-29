@@ -5,7 +5,7 @@
   const categoriesList = data.body;
 
    let idToFilter: number | null = null;
-
+// https://upload.wikimedia.org/wikipedia/commons/1/16/The_Cognitive_Bias_Codex_%28French%29_-_John_Manoogian_III_%28jm3%29.svg?uselang=fr
 
 $: filteredCategories = idToFilter ? categoriesList.filter((category) => category.id === idToFilter) : categoriesList
 
@@ -22,7 +22,7 @@ $: filteredCategories = idToFilter ? categoriesList.filter((category) => categor
     return categoryColor[categoryId] || "text-surface-600-300-token";
   }
 
- $: console.log(filteredCategories)
+
 </script>
 
 <div class="page-container">
@@ -49,13 +49,13 @@ $: filteredCategories = idToFilter ? categoriesList.filter((category) => categor
   <section class="gap-2 m-4 grid justify-center">
     <!-- Add a button to show all categories -->
     <button
-      class="btn variant-filled-primary"
+      class="btn variant-filled-primary md:btn-lg sm:btn-xl"
       on:click={() => idToFilter = null}>Show All</button
     >
-    <div class="grid grid-cols-3">
+    <div class="grid  grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
       {#each categoriesList as  category}
         <button
-          class="btn btn-sm variant-filled m-2"
+          class="btn btn-sm md:btn-lg sm:btn-xl variant-filled m-2"
           on:click={() => idToFilter = category.id}>{category.label}</button
         >
       {/each}
@@ -67,7 +67,7 @@ $: filteredCategories = idToFilter ? categoriesList.filter((category) => categor
       <h2 class={getVariantColor(category.id)}>{category.label}</h2>
       <p>{category.description}</p>
     </div>
-    <div class="grid lg: grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+    <div class="grid lg:grid-cols-2  md:grid-cols-2 sm:grid-cols-1">
       {#each category.biais as biais}
         <BiaisCard
           name={biais.name}
