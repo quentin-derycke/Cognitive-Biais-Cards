@@ -26,36 +26,35 @@ $: filteredCategories = idToFilter ? categoriesList.filter((category) => categor
 </script>
 
 <div class="page-container">
-  <section class="gap-2 m-4 flex-auto">
-    <div
-      class="card border-8 border-surface-900-50-token p-10 mx-auto space-y-4 rounded-none max-w-4xl"
+ 
+    <section
+      class="card border-8 border-surface-900-50-token p-4 mx-auto space-y-4 rounded-none max-w-4xl gap-2 m-2 flex-auto "
     >
-      <h1 class="p-2 font-bold">Liste Des Biais cognitifs</h1>
+      <h1 class="p-2  font-bold">Liste Des Biais cognitifs</h1>
 
-      <p class="p-4 lg:!text-2xl">
+      <p class="p-4 lg:!text-2xl !text-sm md:!text-lg ">
         Les biais cognitifs représentent des processus de pensée qui conduisent
         l'esprit humain à aboutir à des conclusions inexactes.
       </p>
-      <p class="p-4 lg:!text-xl">
+      <p class="p-4 lg:!text-xl !text-sm md:!text-lg ">
         Présentée ici, une liste de 52 biais répartis en 5 catégories. Le but de
         ces différentes cartes sont d'aider les équipes de conception à
         reconnaître leurs propres biais et les différentes inclinaisons qu'ils
         peuvent produire, volontairement ou non, chez les utilisateurs et
         utilisatrices.
       </p>
-    </div>
-  </section>
+    </section>
 
   <section class="gap-2 m-4 grid justify-center">
     <!-- Add a button to show all categories -->
     <button
-      class="btn variant-filled-primary md:btn-lg sm:btn-xl"
+      class="btn variant-filled-primary md:btn-lg"
       on:click={() => idToFilter = null}>Show All</button
     >
-    <div class="grid  grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
+    <div class="grid  lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
       {#each categoriesList as  category}
         <button
-          class="btn btn-sm md:btn-lg sm:btn-xl variant-filled m-2"
+          class="btn btn-md md:btn-lg lg:btn-lg sm:btn-xl sm:text-md lg:text-md variant-filled m-2"
           on:click={() => idToFilter = category.id}>{category.label}</button
         >
       {/each}
@@ -82,21 +81,21 @@ $: filteredCategories = idToFilter ? categoriesList.filter((category) => categor
 
 <style>
   .page-container {
-    width: 100%;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding: 2.5rem 1rem;
+
   }
 
   @media (min-width: 768px) {
     .page-container {
-      padding: 5rem 2.5rem;
-      max-width: 768px;
+    
+      max-width: 100%;
     }
   }
   @media (min-width: 1280px) {
     .page-container {
-      max-width: 1280px;
+      max-width: 100%;
     }
   }
   @media (min-width: 1024px) {
