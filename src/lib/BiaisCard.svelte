@@ -28,9 +28,9 @@
       }
     </script>
     
-    <div class="block card card-hover p-4 m-8  {getVariantColor(categoryId)}">
+    <div class="block  card card-hover p-4 m-8  {getVariantColor(categoryId)}">
       <header class="card-header"><h3 class=" font-bold {getVariantTextColor(categoryId)}">{name}</h3></header>
-      <section class="p-4">{description}</section>
+      <p class="p-4 !text-sm md:!text-base">{description}</p>
       <footer class="card-footer"><span class="badge variant-filled">{id}</span></footer>
     </div>
     

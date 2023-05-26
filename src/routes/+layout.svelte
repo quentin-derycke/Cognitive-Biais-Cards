@@ -12,6 +12,7 @@ import { LightSwitch } from '@skeletonlabs/skeleton';
 import Navigation from '$lib/Navigation/Navigation.svelte';
 import { Drawer, drawerStore } from '@skeletonlabs/skeleton';
 import { page } from '$app/stores';
+  import Footer from '$lib/Footer/Footer.svelte';
 
 // Selectively Disable the Sidebar cf https://www.skeleton.dev/blog/how-to-implement-a-responsive-sidebar-drawer
 $: classesSidebar = $page.url.pathname === '/about' ? 'w-0' : 'w-0 md:w-64';
@@ -56,7 +57,7 @@ function drawerOpen(): void {
 	<!-- Router Slot -->
 	<slot />
 	<!-- ---- / ---- -->
-	<svelte:fragment slot="pageFooter"> Page Footer
+	<svelte:fragment slot="pageFooter"> <Footer/>
   </svelte:fragment>
 
 </AppShell>
