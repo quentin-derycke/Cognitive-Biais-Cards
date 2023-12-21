@@ -22,7 +22,9 @@ $: filteredCategories = idToFilter ? categoriesList.filter((category) => categor
     return categoryColor[categoryId] || "text-surface-600-300-token";
   }
 
-
+  function isSelected(categoryId: number) {
+    return idToFilter === categoryId ? 'selected-class' : '';
+  }
 </script>
 
 <div class="page-container">
@@ -51,12 +53,15 @@ $: filteredCategories = idToFilter ? categoriesList.filter((category) => categor
       class="btn variant-filled-primary md:btn-lg"
       on:click={() => idToFilter = null}>Show All</button
     >
-    <div class="grid  lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1">
-      {#each categoriesList as  category}
+    <div class="btn-group-vertical flex flex-wrap items-center justify-center lg:btn-group variant-ghost-surface">
+      {#each categoriesList as category}
         <button
-          class="btn btn-md md:btn-lg lg:btn-lg sm:btn-xl sm:text-md lg:text-md variant-filled m-2"
-          on:click={() => idToFilter = category.id}>{category.label}</button
+          class="btn btn-md md:btn-lg lg:btn-lg sm:btn-xl sm:text-md lg:text-md m-2 {getVariantColor(category.id)} {isSelected(category.id)}"
+          on:click={() => idToFilter = category.id}
+          data-sveltekit-preload-data="hover"
         >
+          {category.label}
+        </button>
       {/each}
     </div>
   </section>
