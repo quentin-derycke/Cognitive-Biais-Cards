@@ -11,13 +11,13 @@ Ce projet a pour objectif d'en selectionner certains, les categoriser et d'en pr
 
 ## Tech Stack
 
-**Client:**   [Svelte](https://svelte.dev), [Skeleton ui](https://www.skeleton.dev)
+**Front:**   [Svelte](https://svelte.dev), [Skeleton ui](https://www.skeleton.dev)
 
 
-**Server:** [Sveltekit](https://kit.svelte.dev), [Supabase](https://supabase.com), [Prisma ORM](https://www.prisma.io)
+**Back:** [Sveltekit](https://kit.svelte.dev), [Supabase](https://supabase.com), [Prisma ORM](https://www.prisma.io)
 
 
-## Source
+## Content Source
 
 https://betterhumans.pub/cognitive-bias-cheat-sheet-55a472476b18
 https://uxinlux.github.io/cognitive-biases/52-liste-fr/
